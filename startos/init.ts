@@ -4,13 +4,11 @@ import { setDependencies } from './dependencies'
 import { setInterfaces } from './interfaces'
 import { versions } from './versions'
 import { actions } from './actions'
-import { yamlFile } from './file-models/config.json'
+import { mediaSources } from './actions/mediaSources'
 
 // **** Install ****
 const install = sdk.setupInstall(async ({ effects }) => {
-  const name = 'World'
-
-  await yamlFile.write(effects, { name })
+  await sdk.action.requestOwn(effects, mediaSources, 'critical')
 })
 
 // **** Uninstall ****

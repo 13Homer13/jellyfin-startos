@@ -1,9 +1,7 @@
 import { sdk } from '../sdk'
-import { showSecretPhrase } from './showSecretPhrase'
-import { setName } from './setName'
-import { nameToLogs } from './nameToLogs'
+import { mediaSources } from './mediaSources'
+import { plugins } from './plugins'
 
 export const actions = sdk.Actions.of()
-  .addAction(setName)
-  .addAction(showSecretPhrase)
-  .addAction(nameToLogs)
+  .addAction(mediaSources)
+  .addAction(plugins)

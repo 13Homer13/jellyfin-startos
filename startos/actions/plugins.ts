@@ -5,18 +5,18 @@ const { InputSpec, Value } = sdk
 
 export const inputSpec = InputSpec.of({
   chromecast: Value.toggle({
-    name: "Chromecast",
+    name: 'Chromecast',
     default: false,
-    description: "Chromecast plugin to allow casting to other devices.",
+    description: 'Chromecast plugin to allow casting to other devices.',
   }),
   trailers: Value.toggle({
-    name: "Youtube trailers",
+    name: 'Youtube trailers',
     default: false,
-    description: "Auto-load movie trailers from YouTube.",
+    description: 'Auto-load movie trailers from YouTube.',
   }),
 })
 
-export const setName = sdk.Action.withInput(
+export const plugins = sdk.Action.withInput(
   // id
   'plugins',
 
@@ -36,19 +36,17 @@ export const setName = sdk.Action.withInput(
   // optionally pre-fill the input form
   async ({ effects }) => {
     const plugins = (await jsonFile.read.const(effects))?.plugins || []
-    const options = {
-      chromecast: false,
-      trailers: false
+    return {
+      chromecast: plugins.includes('chromecast'),
+      trailers: plugins.includes('trailers'),
     }
-    plugins.forEach(i => options[i] = true)
-    return options
   },
 
   // the execution function
   async ({ effects, input }) => {
-    const plugins: string[] = []
-    if (input.chromecast) plugins.push('chromecast')
-    if (input.trailers) plugins.push('trailers')
-    await jsonFile.merge(effects, { plugins })
+    const plugins = new Set((await jsonFile.read.const(effects))?.plugins || [])
+    input.chromecast ? plugins.add('chromecast') : plugins.delete('chromecast')
+    input.trailers ? plugins.add('trailers') : plugins.delete('trailers')
+    await jsonFile.merge(effects, { plugins: Array.from(plugins) })
   },
 )

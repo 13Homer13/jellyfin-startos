@@ -4,17 +4,17 @@ const { InputSpec, Value } = sdk
 
 export const inputSpec = InputSpec.of({
   mediaSources: Value.multiselect({
-    name: "Media Sources",
+    name: 'Media Sources',
     values: {
-      nextcloud: "Nextcloud",
-      filebrowser: "File Browser",
+      nextcloud: 'Nextcloud',
+      filebrowser: 'File Browser',
     },
-    default: ["nextcloud"],
+    default: ['nextcloud'],
     minLength: 1,
-  })
+  }),
 })
 
-export const setName = sdk.Action.withInput(
+export const mediaSources = sdk.Action.withInput(
   // id
   'media-sources',
 
@@ -33,9 +33,12 @@ export const setName = sdk.Action.withInput(
 
   // optionally pre-fill the input form
   async ({ effects }) => ({
-    mediaSources: await sdk.store.getOwn(effects, sdk.StorePath.mediaSources).const()
+    mediaSources: await sdk.store
+      .getOwn(effects, sdk.StorePath.mediaSources)
+      .const(),
   }),
 
   // the execution function
-  async ({ effects, input }) => sdk.store.setOwn(effects, sdk.StorePath.mediaSources, input.mediaSources),
+  async ({ effects, input }) =>
+    sdk.store.setOwn(effects, sdk.StorePath.mediaSources, input.mediaSources),
 )

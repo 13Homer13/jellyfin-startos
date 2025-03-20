@@ -8,5 +8,4 @@ export type Store = {
   mediaSources: MediaSource[]
 }
 
-
-export const exposedStore = setupExposeStore<Store>((pathBuilder) => [])
+export const exposedStore = setupExposeStore<Store>(() => [])
