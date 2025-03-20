@@ -5,7 +5,7 @@ export const manifest = setupManifest({
   title: 'Jellyfin',
   license: 'mit',
   wrapperRepo: 'https://github.com/Start9Labs/jellyfin-startos',
-  upstreamRepo: '"https://github.com/jellyfin/jellyfin',
+  upstreamRepo: 'https://github.com/jellyfin/jellyfin',
   supportSite: 'https://jellyfin.org/docs/',
   marketingSite: 'https://jellyfin.org',
   donationUrl: 'https://opencollective.com/jellyfin/donate',
