@@ -21,7 +21,6 @@ export const manifest = setupManifest({
       },
     },
   },
-  // TODO gpu-acceleration: true ?
   hardwareRequirements: {},
   alerts: {},
   dependencies: {

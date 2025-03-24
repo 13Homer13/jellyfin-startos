@@ -9,7 +9,7 @@ export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
   const deps: T.CurrentDependenciesResult<any> = {}
 
   if (mediaSources.includes('filebrowser')) {
-    deps['file-browser'] = {
+    deps['filebrowser'] = {
       kind: 'exists',
       versionRange: '>=1.0.0', // @TODO
     }

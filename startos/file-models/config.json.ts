@@ -21,7 +21,7 @@ const shape = object({
   plugins: array(string).onMismatch(configDefaults.plugins),
 })
 
-export const jsonFile = FileHelper.json(
+export const configJson = FileHelper.json(
   '/media/startos/volumes/main/config.json',
   shape,
 )

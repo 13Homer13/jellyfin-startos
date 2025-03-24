@@ -1,6 +1,6 @@
 import { sdk } from './sdk'
 import { T } from '@start9labs/start-sdk'
-import { datadir, configdir, cachedir, logdir, webdir, uiPort } from './utils'
+import { uiPort } from './utils'
 
 export const main = sdk.setupMain(async ({ effects, started }) => {
   /**
@@ -13,7 +13,7 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
   const depResult = await sdk.checkDependencies(effects)
   depResult.throwIfNotSatisfied()
 
-  const mounts = sdk.Mounts.of().addVolume('main', null, datadir, false)
+  const mounts = sdk.Mounts.of().addVolume('main', null, '/jellyfin', false)
 
   const mediaSources = await sdk.store
     .getOwn(effects, sdk.StorePath.mediaSources)
@@ -48,16 +48,6 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
       subcontainer: { imageId: 'jellyfin' },
       command: [
         'jellyfin/jellyfin',
-        '--datadir',
-        datadir,
-        '--configdir',
-        configdir,
-        '--cachedir',
-        cachedir,
-        '--webdir',
-        webdir,
-        '--logdit',
-        logdir,
         '--ffmpeg',
         '/usr/lib/jellyfin-ffmpeg/ffmpeg',
       ],

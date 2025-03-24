@@ -1,4 +1,4 @@
-import { jsonFile } from '../file-models/config.json'
+import { configJson } from '../file-models/config.json'
 import { sdk } from '../sdk'
 
 const { InputSpec, Value } = sdk
@@ -35,7 +35,7 @@ export const plugins = sdk.Action.withInput(
 
   // optionally pre-fill the input form
   async ({ effects }) => {
-    const plugins = (await jsonFile.read.const(effects))?.plugins || []
+    const plugins = (await configJson.read.const(effects))?.plugins || []
     return {
       chromecast: plugins.includes('chromecast'),
       trailers: plugins.includes('trailers'),
@@ -44,9 +44,11 @@ export const plugins = sdk.Action.withInput(
 
   // the execution function
   async ({ effects, input }) => {
-    const plugins = new Set((await jsonFile.read.const(effects))?.plugins || [])
+    const plugins = new Set(
+      (await configJson.read.const(effects))?.plugins || [],
+    )
     input.chromecast ? plugins.add('chromecast') : plugins.delete('chromecast')
     input.trailers ? plugins.add('trailers') : plugins.delete('trailers')
-    await jsonFile.merge(effects, { plugins: Array.from(plugins) })
+    await configJson.merge(effects, { plugins: Array.from(plugins) })
   },
 )
