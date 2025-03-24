@@ -8,7 +8,9 @@ import { mediaSources } from './actions/mediaSources'
 
 // **** Install ****
 const install = sdk.setupInstall(async ({ effects }) => {
-  await sdk.action.requestOwn(effects, mediaSources, 'critical')
+  await sdk.action.requestOwn(effects, mediaSources, 'critical', {
+    reason: 'Select where Jellyfin media are stored',
+  })
 })
 
 // **** Uninstall ****

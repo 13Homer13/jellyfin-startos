@@ -1,16 +1,16 @@
 id: jellyfin
-title: "Jellyfin"
+title: 'Jellyfin'
 version: 10.10.6
 release-notes: |
   - Updated Jellyfin code to the latest version from upstream - full changelog available [here](https://github.com/jellyfin/jellyfin/compare/v10.10.3...v10.10.6)
   - Bugfixes and improvements
 license: GPL-2.0
-wrapper-repo: "https://github.com/Start9Labs/jellyfin-startos"
-upstream-repo: "https://github.com/jellyfin/jellyfin"
-support-site: "https://jellyfin.org/docs/"
+wrapper-repo: 'https://github.com/Start9Labs/jellyfin-startos'
+upstream-repo: 'https://github.com/jellyfin/jellyfin'
+support-site: 'https://jellyfin.org/docs/'
 marketing-site: https://jellyfin.org
-donation-url: "https://opencollective.com/jellyfin/donate"
-build: ["make"]
+donation-url: 'https://opencollective.com/jellyfin/donate'
+build: ['make']
 description:
   short: The Free Software Media System
   long: |
@@ -22,7 +22,7 @@ assets:
 main:
   type: docker
   image: main
-  entrypoint: "docker_entrypoint.sh"
+  entrypoint: 'docker_entrypoint.sh'
   args: []
   mounts:
     main: /jellyfin/main
@@ -78,7 +78,7 @@ interfaces:
     description: Jellyfin Main UI
     tor-config:
       port-mapping:
-        80: "8096"
+        80: '8096'
     lan-config:
       443:
         ssl: true
@@ -89,13 +89,13 @@ interfaces:
       - http
 dependencies:
   filebrowser:
-    version: "^2.14.1.1"
+    version: '^2.14.1.1'
     description: Used to get media from File Browser
     requirement:
       type: opt-in
       how: Can alternatively use Nextcloud for file storage
   nextcloud:
-    version: ">=25.0.2 <31.1"
+    version: '>=25.0.2 <31.1'
     description: Used to get media from Nextcloud
     requirement:
       type: opt-in
@@ -135,10 +135,10 @@ backup:
       config: /config
 migrations:
   from:
-    "*":
+    '*':
       type: script
-      args: ["from"]
+      args: ['from']
   to:
-    "*":
+    '*':
       type: script
-      args: ["to"]
+      args: ['to']

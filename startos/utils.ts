@@ -1,6 +1,6 @@
 export const uiPort = 8096
 
-export const datadir = '/data'
+export const datadir = '/data' // @TODO Aiden this need to match 0351?
 export const configdir = '/.config'
 export const cachedir = '/.cache'
 export const webdir = '/.web'

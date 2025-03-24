@@ -15,15 +15,15 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
 
   const mounts = sdk.Mounts.of().addVolume('main', null, datadir, false)
 
-  const deps = await sdk.store
+  const mediaSources = await sdk.store
     .getOwn(effects, sdk.StorePath.mediaSources)
     .const()
 
-  if (deps.includes('filebrowser')) {
+  if (mediaSources.includes('filebrowser')) {
     mounts.addDependency('filebrowser', 'main', null, '/filebrowser', true)
   }
 
-  if (deps.includes('nextcloud')) {
+  if (mediaSources.includes('nextcloud')) {
     mounts.addDependency('nextcloud', 'main', null, '/nextcloud', true)
   }
 
