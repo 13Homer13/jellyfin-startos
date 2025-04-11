@@ -36,5 +36,5 @@ export const migration: T.ExpectedExports.migration = compat.migrations
             },
           },
         },
-    "10.10.6",
+    "10.10.7",
 );

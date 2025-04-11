@@ -1,9 +1,9 @@
 id: jellyfin
 title: "Jellyfin"
-version: 10.10.6
+version: 10.10.7
 release-notes: |
-  - Updated Jellyfin code to the latest version from upstream - full changelog available [here](https://github.com/jellyfin/jellyfin/compare/v10.10.3...v10.10.6)
-  - Bugfixes and improvements
+  - Updated Jellyfin code to the latest version from upstream - full changelog available [here](https://github.com/jellyfin/jellyfin/compare/v10.10.6...v10.10.7)
+  - Bugfixes and security fixes
 license: GPL-2.0
 wrapper-repo: "https://github.com/Start9Labs/jellyfin-startos"
 upstream-repo: "https://github.com/jellyfin/jellyfin"
@@ -89,13 +89,13 @@ interfaces:
       - http
 dependencies:
   filebrowser:
-    version: "^2.14.1.1"
+    version: "*"
     description: Used to get media from File Browser
     requirement:
       type: opt-in
       how: Can alternatively use Nextcloud for file storage
   nextcloud:
-    version: ">=25.0.2 <31.1"
+    version: "*"
     description: Used to get media from Nextcloud
     requirement:
       type: opt-in
